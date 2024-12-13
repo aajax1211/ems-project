@@ -1,7 +1,15 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { formatDate } from '../utils/dateFormatter';
 
 function EmployeeTable({ employees }) {
+  const navigate = useNavigate();
+
+  const handleRowClick = (employeeId) => {
+    navigate(`/employee/${employeeId}`);
+  };
+
   return (
     <div className="employee-table">
       <Table striped bordered hover>
@@ -19,11 +27,15 @@ function EmployeeTable({ employees }) {
         </thead>
         <tbody>
           {employees.map(employee => (
-            <tr key={employee.id}>
+            <tr 
+              key={employee.id} 
+              onClick={() => handleRowClick(employee.id)}
+              style={{ cursor: 'pointer' }}
+            >
               <td>{employee.firstName}</td>
               <td>{employee.lastName}</td>
               <td>{employee.age}</td>
-              <td>{new Date(employee.dateOfJoining).toLocaleDateString()}</td>
+              <td>{formatDate(employee.dateOfJoining)}</td>
               <td>{employee.title}</td>
               <td>{employee.department}</td>
               <td>{employee.employeeType}</td>

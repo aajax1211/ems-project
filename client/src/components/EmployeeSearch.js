@@ -6,6 +6,7 @@ function EmployeeSearch({ onSearch }) {
     age: '',
     department: '',
     title: '',
+    employeeType: ''
   });
 
   const handleChange = (e) => {
@@ -31,7 +32,7 @@ function EmployeeSearch({ onSearch }) {
             />
           </Form.Group>
         </Col>
-        <Col md={3}>
+        <Col md={2}>
           <Form.Group>
             <Form.Control
               as="select"
@@ -47,28 +48,43 @@ function EmployeeSearch({ onSearch }) {
             </Form.Control>
           </Form.Group>
         </Col>
-        <Col md={3}>
+        <Col md={2}>
           <Form.Group>
             <Form.Control
               as="select"
-              name="title"
-              value={filters.title}
+              name="employeeType"
+              value={filters.employeeType}
               onChange={handleChange}
             >
-              <option value="">All Titles</option>
-              <option value="Employee">Employee</option>
-              <option value="Manager">Manager</option>
-              <option value="Director">Director</option>
-              <option value="VP">VP</option>
+              <option value="">All Types</option>
+              <option value="FullTime">Full Time</option>
+              <option value="PartTime">Part Time</option>
+              <option value="Contract">Contract</option>
+              <option value="Seasonal">Seasonal</option>
             </Form.Control>
           </Form.Group>
         </Col>
-        <Col md={3}>
-          <Button type="submit" variant="primary" block>Search</Button>
+        <Col md={2}>
+  <Form.Group>
+    <Form.Control
+      as="select"
+      name="title"
+      value={filters.title}
+      onChange={handleChange}
+    >
+      <option value="">All Titles</option>
+      <option value="Employee">Employee</option>
+      <option value="Manager">Manager</option>
+      <option value="Director">Director</option>
+      <option value="VP">VP</option>
+    </Form.Control>
+  </Form.Group>
+</Col>
+        <Col md={2}>
+          <Button type="submit" variant="primary">Search</Button>
         </Col>
       </Row>
     </Form>
   );
 }
-
 export default EmployeeSearch;
